@@ -31,7 +31,6 @@ class Profile(models.Model):
     )
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    photo =  models.ImageField(verbose_name="Profile Photo",upload_to="profile/%Y/%m/%d/", max_length=200, default="profilep.jpg")
     prefix = models.CharField(verbose_name="Prefix", choices=prefix_list , max_length=5)
     firstname = models.CharField(verbose_name="First Name", max_length=100)
     lastname = models.CharField(verbose_name="Last Name", max_length=100)
