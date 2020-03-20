@@ -1,0 +1,60 @@
+{% extends "account/base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Signup" %}{% endblock %}
+{% block extra_head %}
+
+{% endblock extra_head %}
+
+
+{% block content %}
+<h1>{% trans "Sign Up" %}</h1>
+
+                {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{ error }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                    {% endfor %}
+                    {% endif %}
+                <form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
+                  {% csrf_token %}
+                  {% with WIDGET_ERROR_CLASS='is-invalid' %}
+                  <div class="form-group">
+                      <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                      {% render_field form.email|add_class:'form-control'|add_error_class:"is-invalid" %}
+                      <div class="invalid-feedback">
+                        {{ form.email.errors }}
+                      </div>
+                  </div>
+                    <div class="form-group">
+                      <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+                      {% render_field form.password1|add_class:'form-control'|add_error_class:"is-invalid" %}
+                      <div class="invalid-feedback">
+                        {{ form.password1.errors }}
+                      </div>
+                  </div>           
+                  {% endwith %}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <button class="btn btn-lg btn-block btn-primary mb-3" type="submit">{% trans "Sign Up" %}</button>
+                    <div class="text-center">
+                      <small class="text-muted text-center">
+                         Already have an account? <a href="{% url 'account_login' %}">Sign In</a>.
+                      </small>
+                  </div>
+</form>
+
+{% endblock %}
+
+
+{% block extra_js %}
+<script src="{% static 'events/dashboard/libs/jquery-mask-plugin/dist/jquery.mask.min.js' %}"></script>
+{% endblock extra_js %}

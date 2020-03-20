@@ -1,0 +1,260 @@
+{% extends 'pages/_base.html' %}
+
+
+{% block content %}
+
+
+{% if user.profile.is_approved %}
+<div class="header mt-md-2">
+    <div class="header-body">
+
+      <!-- Title -->
+      <h1 class="header-title">
+         {{ user.profile.warehouse }}
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="header-subtitle">
+        Welcome - {{ user }}
+      </p>
+
+    </div>
+  </div>
+
+<div class="row">
+
+    <div class="col-12 col-lg-6 col-xl">
+
+      <!-- Card -->
+      <div class="card">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2">
+                Total Orders
+              </h6>
+
+              <!-- Heading -->
+              <span class="h2 mb-0">
+                 GHS {{ total_stock_price | floatformat }}
+              </span>
+
+            </div>
+            <div class="col-auto">
+
+            </div>
+          </div> <!-- / .row -->
+
+        </div>
+      </div>
+
+    </div>
+</div>
+
+  <div class="row">
+    <div class="col-12 col-lg-6 col-xl">
+      
+      <!-- Card -->
+      <div class="card">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2">
+                Total Products
+              </h6>
+              
+              <!-- Heading -->
+              <span class="h2 mb-0">
+                {{ product_count }}
+              </span>
+
+            </div>
+            <div class="col-auto">
+              
+              <!-- Icon -->
+              <span class="h2 fe fe-tag text-muted mb-0"></span>
+
+            </div>
+          </div> <!-- / .row -->
+
+        </div>
+      </div>
+        
+    </div>
+    <div class="col-12 col-lg-6 col-xl">
+      
+      <!-- Card -->
+      <div class="card">
+        <div class="card-body">
+          <div class="row align-items-center">
+            <div class="col">
+
+              <!-- Title -->
+              <h6 class="card-title text-uppercase text-muted mb-2">
+                Customers
+              </h6>
+
+              <div class="row align-items-center no-gutters">
+                <div class="col-auto">
+
+                  <!-- Heading -->
+                  <span class="h2 mr-2 mb-0">
+                    {{ customer_count }}
+                  </span>
+                  
+                </div>
+              </div> <!-- / .row -->
+
+            </div>
+            <div class="col-auto">
+              
+              <!-- Icon -->
+              <span class="h2 fe fe-user text-muted mb-0"></span>
+
+            </div>
+          </div> <!-- / .row -->
+
+        </div>
+      </div>
+        
+    </div>
+  </div>
+
+
+<div class="row">
+      <div class="col-12 col-md-6 col-xl-4">
+        <div class="card">
+            <div class="card-header">
+              
+                <h2 class="card-header-title">
+                    <i class="fe fe-truck"></i> &nbsp;&nbsp;&nbsp;
+                  Shipments
+              </h2>
+              
+            </div>
+
+
+            <div class="card-header">
+              <h4 class="card-header-title">
+                <a href="{% url 'add-shipment' user.profile.warehouse.id%}">
+                  <i class="fe fe-plus-circle"></i> &nbsp;&nbsp;&nbsp;
+                  Add New
+                </a>
+              </h4>
+              </div>
+
+              <div class="card-header">
+                <h4 class="card-header-title">
+                  <a href="{% url 'all-shipment' user.profile.warehouse.id %}">
+                    <i class="fe fe-list"></i> &nbsp;&nbsp;&nbsp;
+                    All Shipments
+                  </a>
+                </h4>
+                </div>
+
+          </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-xl-4">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-header-title">
+                    <i class="fe fe-tag"></i> &nbsp;&nbsp;&nbsp;
+                  Products
+              </h2>
+              
+            </div>
+
+            <div class="card-header">
+              <h4 class="card-header-title">
+                <a href="{% url 'add-product' user.profile.warehouse.id %}">
+                  <i class="fe fe-plus-circle"></i> &nbsp;&nbsp;&nbsp;
+                  Add New
+                </a>
+              </h4>
+              </div>
+
+              <div class="card-header">
+                <h4 class="card-header-title">
+                  <a href="{% url 'all-products' user.profile.warehouse.id %}">
+                    <i class="fe fe-list"></i> &nbsp;&nbsp;&nbsp;
+                    All Products
+                  </a>
+                </h4>
+                </div>
+
+
+          </div>
+      </div>
+
+      <div class="col-12 col-md-6 col-xl-4">
+        <div class="card">
+            <div class="card-header">
+              
+              <h4 class="card-header-title">
+                <i class="fe fe-user"></i> &nbsp;&nbsp;
+                Customers
+              </h4>
+              
+            </div>
+
+
+            <div class="card-header">
+              <h4 class="card-header-title">
+                <a href="{% url 'add-customer' %}">
+                  <i class="fe fe-plus-circle"></i> &nbsp;&nbsp;&nbsp;
+                  Add New
+                </a>
+              </h4>
+              </div>
+
+              <div class="card-header">
+                <h4 class="card-header-title">
+                  <a href="{% url 'all-customers' %}">
+                    <i class="fe fe-list"></i> &nbsp;&nbsp;&nbsp;
+                    All Customers
+                  </a>
+                </h4>
+                </div>
+
+          </div>
+      </div>
+</div>
+{% else %}
+
+      <div class="row justify-content-center">
+        <div class="my-5">
+
+          <div class="text-center">
+
+            <!-- Preheading -->
+            <h6 class="text-uppercase text-muted mb-4">
+              Aproval error
+            </h6>
+
+            <!-- Heading -->
+            <h1 class="display-4 mb-3">
+              Your account has not been approved.💔
+            </h1>
+
+            <!-- Subheading -->
+            <p class="text-muted mb-4">
+              You might have to contact your administrator.
+            </p>
+
+<!--            &lt;!&ndash; Button &ndash;&gt;-->
+<!--            <a href="index.html" class="btn btn-lg btn-primary">-->
+
+<!--            </a>-->
+
+          </div>
+
+        </div>
+      </div> <!-- / .row -->
+  <h1></h1>
+{% endif %}
+{% endblock content %}

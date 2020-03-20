@@ -1,0 +1,30 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Sign Out" %}{% endblock %}
+
+
+    {% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-light alert-dismissible fade show" role="alert">
+              {{message}}
+          </div>
+        {% endfor %}
+    {% endif %}
+
+{% block content %}
+<h1 class="display-4 text-center mb-3">{% trans "Sign Out" %}</h1>
+
+<p class="text-muted text-center mb-5">{% trans 'Are you sure you want to sign out?' %}</p>
+
+<form method="post" action="{% url 'account_logout' %}">
+  {% csrf_token %}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+  {% endif %}
+  <button class="btn btn-lg btn-block btn-primary mb-3" type="submit">{% trans 'Sign Out' %}</button>
+</form>
+
+
+{% endblock %}

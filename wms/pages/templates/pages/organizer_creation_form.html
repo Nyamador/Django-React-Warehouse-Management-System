@@ -1,0 +1,181 @@
+{% extends 'events/dashboard/_base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+<div class="main-content">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10 col-xl-8">
+                <div class="header mt-md-5">
+                    <div class="header-body">
+                      <div class="row align-items-center">
+                        <div class="col">
+
+
+                          <!-- Title -->
+                          <h1 class="header-title">
+                                  <i class="fe fe-user"></i>
+                            Create An Organizer Profile
+                          </h1>
+
+                        </div>
+                      </div> <!-- / .row -->
+                    </div>
+                  </div>
+
+                <form class="organizer-form" method="post" enctype="multipart/form-data" >
+                    {% csrf_token %}
+                    {% with WIDGET_ERROR_CLASS='is-invalid' WIDGET_REQUIRED_CLASS="required" %}
+<!--                    TODO: Deal with required attrs-->
+
+<!--                    <div class="row">-->
+<!--                            <div class="col-12 col-md-6">-->
+<!--                -->
+<!--                            </div>-->
+<!--                        -->
+<!--                            <div class="col-12 col-md-6">-->
+<!--                -->
+<!--                            </div>                            -->
+<!--                    </div>-->
+
+
+                                  <div class="form-group">
+                                      <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                                      {% render_field form.name|add_class:'form-control'|add_error_class:"is-invalid" %}
+                                      <div class="invalid-feedback">
+                                          {{ form.login.errors }}
+                                      </div>
+                                  </div>
+
+                                    <div class="form-group">
+<!--                                            TODO :              iMAGE UPLOAD SECTION                          -->
+                                    </div>
+
+
+                    <div class="form-group">
+                                  <div class="form-group">
+                                      <label for="{{ form.website.id_for_label }}">{{ form.website.label }}</label>
+                                      {% render_field form.website|add_class:'form-control'|add_error_class:"is-invalid" %}
+                                      <div class="invalid-feedback">
+                                          {{ form.login.errors }}
+                                      </div>
+                                  </div>
+                    </div>
+
+                    <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                              <div class="form-group">
+                                                  <label for="{{ form.facebook.id_for_label }}">{{ form.facebook.label }}</label>
+                                                  {% render_field form.facebook|add_class:'form-control'|add_error_class:"is-invalid" %}
+                                                  <div class="invalid-feedback">
+                                                      {{ form.login.errors }}
+                                                  </div>
+                                              </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                              <div class="form-group">
+                                                  <label for="{{ form.twitter.id_for_label }}">{{ form.twitter.label }}</label>
+                                                  {% render_field form.twitter|add_class:'form-control'|add_error_class:"is-invalid" %}
+                                                  <div class="invalid-feedback">
+                                                      {{ form.login.errors }}
+                                                  </div>
+                                              </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                              <div class="form-group">
+                                                  <label for="{{ form.instagram.id_for_label }}">{{ form.instagram.label }}</label>
+                                                  {% render_field form.instagram|add_class:'form-control'|add_error_class:"is-invalid" %}
+                                                  <div class="invalid-feedback">
+                                                      {{ form.login.errors }}
+                                                  </div>
+                                              </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                                  <div class="form-group">
+                                                      <label for="{{ form.linkedin.id_for_label }}">{{ form.linkedin.label }}</label>
+                                                      {% render_field form.linkedin|add_class:'form-control'|add_error_class:"is-invalid" %}
+                                                      <div class="invalid-feedback">
+                                                          {{ form.login.errors }}
+                                                      </div>
+                                                  </div>
+                                    </div>
+                            </div>
+                    </div>
+
+                    <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.momo_1.id_for_label }}">{{ form.momo_1.label }}</label>
+                                        {% render_field form.momo_1|add_class:'form-control'|add_error_class:"is-invalid" %}
+                                            <div class="invalid-feedback">
+                                                {{ form.login.errors }}
+                                            </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.momo_2.id_for_label }}">{{ form.momo_2.label }}</label>
+                                        {% render_field form.momo_2|add_class:'form-control'|add_error_class:"is-invalid" %}
+                                            <div class="invalid-feedback">
+                                                {{ form.login.errors }}
+                                            </div>
+                                </div>
+                            </div>
+                    </div>
+
+                    <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.bank_name.id_for_label }}">{{ form.bank_name.label }}</label>
+                                        {% render_field form.bank_name|add_class:'form-control'|add_error_class:"is-invalid" %}
+                                            <div class="invalid-feedback">
+                                                {{ form.login.errors }}
+                                            </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12 col-md-6">
+                                <div class="form-group">
+                                    <label for="{{ form.account_number.id_for_label }}">{{ form.account_number.label }}</label>
+                                        {% render_field form.account_number|add_class:'form-control'|add_error_class:"is-invalid" %}
+                                            <div class="invalid-feedback">
+                                                {{ form.login.errors }}
+                                            </div>
+                                </div>
+                            </div>
+                    </div>
+
+                                <div class="form-group">
+                                    <label for="{{ form.country.id_for_label }}">{{ form.country.label }}</label>
+                                        {% render_field form.country|add_class:'form-control'|add_error_class:"is-invalid" %}
+                                            <div class="invalid-feedback">
+                                                {{ form.login.errors }}
+                                            </div>
+                                </div>
+
+
+                    {% endwith %}
+                    <input type="submit" class="primaryAction btn btn-lg btn-block btn-primary mb-3" value="Create Event">
+<!--                    {{ form }}-->
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

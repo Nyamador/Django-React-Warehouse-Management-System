@@ -1,0 +1,350 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="{%block description%}{% endblock description %} | ">
+
+    <!-- Libs CSS -->
+    <link rel="stylesheet" href="{% static 'events/dashboard/fonts/feather/feather.min.css' %}">
+    <link rel="stylesheet" href="{% static 'events/dashboard/libs/flatpickr/dist/flatpickr.min.css' %}">
+    <link rel="stylesheet" href="{% static 'events/dashboard/libs/select2/dist/css/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'events/dashboard/css/theme.min.css' %}" id="stylesheetLight">
+    
+    <style>
+      .required:after{
+        content: "*";
+        font-weight:bold ;
+        color: red;
+      }
+    </style>
+    <title>{% block title %} {% endblock title %}
+
+    </title>
+  </head>
+
+  <body>
+
+  
+
+    {% block comment %}
+    {% if messages %}
+    {% for message in messages %}  
+    <div class="alert alert-success alert-dismissible fade show" role="alert" style="margin: 0;border-radius: 0;text-align: center;
+">
+                    <strong></strong> {{message}}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+    {% endfor %}
+    {% endif %}
+    <nav class="navbar navbar-expand-lg navbar-light" id="topnav">
+        <div class="container">
+
+          <!-- Toggler -->
+          <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+
+          <!-- User -->
+          <div class="navbar-user">
+      
+
+            <!-- Dropdown -->
+            <div class="dropdown">
+        
+              <!-- Toggle -->
+              <div class="avatar-img rounded-circle">
+                <i class="fe fe-user">
+
+                </i>
+              </div>
+               
+
+              <!-- Menu -->
+              <div class="dropdown-menu dropdown-menu-right">
+                <a href="{% url 'account_change_password' %}" class="dropdown-item">Change Password</a>
+                <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+              </div>
+
+            </div>
+
+          </div>
+
+          <!-- Collapse -->
+          <div class="collapse navbar-collapse mr-auto order-lg-first" id="navbar">
+
+            <!-- Form -->
+            <!-- <form class="mt-4 mb-3 d-md-none">
+              <input type="search" class="form-control form-control-rounded" placeholder="Search" aria-label="Search">
+            </form> -->
+
+            <!-- Navigation -->
+            <ul class="navbar-nav mr-auto">
+              <!-- <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle " href="#" id="topnavDashboards" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Dashboards
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="topnavDashboards">
+                  <li>
+                    <a class="dropdown-item " href="index.html">
+                      Default
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="dashboard-alt.html">
+                      Alternative
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle " href="#" id="topnavPages" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Pages
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="topnavPages">
+                  <li class="dropright">
+                    <a class="dropdown-item dropdown-toggle " href="#" id="topnavProfile" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Profile
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="topnavProfile">
+                      <a class="dropdown-item " href="profile-posts.html">
+                        Posts
+                      </a>
+                      <a class="dropdown-item " href="profile-groups.html">
+                        Groups
+                      </a>
+                      <a class="dropdown-item " href="profile-projects.html">
+                        Projects
+                      </a>
+                      <a class="dropdown-item " href="profile-files.html">
+                        Files
+                      </a>
+                      <a class="dropdown-item " href="profile-subscribers.html">
+                        Subscribers
+                      </a>
+                    </div>
+                  </li>
+                  <li class="dropright">
+                    <a class="dropdown-item dropdown-toggle " href="#" id="topnavProject" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Project
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="topnavProject">
+                      <a class="dropdown-item " href="project-overview.html">
+                        Overview
+                      </a>
+                      <a class="dropdown-item " href="project-files.html">
+                        Files
+                      </a>
+                      <a class="dropdown-item " href="project-reports.html">
+                        Reports
+                      </a>
+                      <a class="dropdown-item " href="project-new.html">
+                        New project
+                      </a>
+                    </div>
+                  </li>
+                  <li class="dropright">
+                    <a class="dropdown-item dropdown-toggle " href="#" id="topnavTeam" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Team
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="topnavTeam">
+                      <a class="dropdown-item " href="team-overview.html">
+                        Overview
+                      </a>
+                      <a class="dropdown-item " href="team-projects.html">
+                        Projects
+                      </a>
+                      <a class="dropdown-item " href="team-members.html">
+                        Members
+                      </a>
+                      <a class="dropdown-item " href="team-new.html">
+                        New team
+                      </a>
+                    </div>
+                  </li>
+                  <li class="dropright">
+                    <a class="dropdown-item dropdown-toggle " href="#" id="topnavFeed" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Feed
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="topnavFeed">
+                      <a class="dropdown-item " href="feed.html">
+                        Platform
+                      </a>
+                      <a class="dropdown-item " href="social-feed.html">
+                        Social
+                      </a>
+                    </div>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="kanban.html">
+                      Kanban
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="orders.html">
+                      Orders
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="settings.html">
+                      Settings
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="invoice.html">
+                      Invoice
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="pricing.html">
+                      Pricing
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="topnavAuth" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Auth
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="topnavAuth">
+                  <li class="dropright">
+                    <a class="dropdown-item dropdown-toggle" href="#" id="topnavSignIn" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Sign in
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="topnavSignIn">
+                      <a class="dropdown-item" href="sign-in-cover.html">
+                        Cover
+                      </a>
+                      <a class="dropdown-item" href="sign-in-illustration.html">
+                        Illustration
+                      </a>
+                      <a class="dropdown-item" href="sign-in-basics.html">
+                        Basic
+                      </a>
+                    </div>
+                  </li>
+                  <li class="dropright">
+                    <a class="dropdown-item dropdown-toggle" href="#" id="topnavSignUp" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Sign up
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="topnavSignUp">
+                      <a class="dropdown-item" href="sign-up-cover.html">
+                        Cover
+                      </a>
+                      <a class="dropdown-item" href="sign-up-illustration.html">
+                        Illustration
+                      </a>
+                      <a class="dropdown-item" href="sign-up.html">
+                        Basic
+                      </a>
+                    </div>
+                  </li>
+                  <li class="dropright">
+                    <a class="dropdown-item dropdown-toggle" href="#" id="topnavPassword" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Password reset
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="topnavPassword">
+                      <a class="dropdown-item" href="password-reset-cover.html">
+                        Cover
+                      </a>
+                      <a class="dropdown-item" href="password-reset-illustration.html">
+                        Illustration
+                      </a>
+                      <a class="dropdown-item" href="password-reset.html">
+                        Basic
+                      </a>
+                    </div>
+                  </li>
+                  <li class="dropright">
+                    <a class="dropdown-item dropdown-toggle" href="#" id="topnavError" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Error
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="topnavError">
+                      <a class="dropdown-item" href="error-illustration.html">
+                        Illustration
+                      </a>
+                      <a class="dropdown-item" href="error.html">
+                        Basic
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle " href="#" id="topnavDocumentation" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Docs
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="topnavDocumentation">
+                  <li>
+                    <a class="dropdown-item " href="getting-started.html">
+                      Getting started
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item active" href="components.html">
+                      Components
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item " href="changelog.html">
+                      Changelog
+                    </a>
+                  </li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#modalDemo" data-toggle="modal">
+                  Customize
+                </a>
+              </li> -->
+              <h2 class="text-muted nav-item mb-0">
+                <a href="{% url 'home'%}">
+                  Stock
+                </a>
+              </h2>
+            </ul>
+
+          </div>
+
+        </div> <!-- / .container -->
+      </nav>
+      {% endblock comment %}
+
+
+   
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10 col-xl-8">
+                {% block content %}
+                {% endblock content %}
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- JAVASCRIPT
+    ================================================== -->
+    <!-- Libs JS -->
+    <script src="{% static 'events/dashboard/js/jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'events/dashboard/libs/dropzone/dist/min/dropzone.min.js' %}"></script>
+    <script src="{% static 'events/dashboard/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'events/dashboard/libs/autosize/dist/autosize.min.js' %}"></script>
+    <script src="{% static 'events/dashboard/libs/flatpickr/dist/flatpickr.min.js' %}"></script>
+    <script src="{% static 'events/dashboard/libs/jquery-mask-plugin/dist/jquery.mask.min.js' %}"></script>
+    <script src="{% static 'events/dashboard/libs/select2/dist/js/select2.min.js' %}"></script>
+    <script src="{% static 'events/dashboard/libs/list.js/dist/list.min.js' %}"></script>
+
+    <!-- Map -->
+    <!-- <script src='https://api.mapbox.com/mapbox-gl-js/v0.53.0/mapbox-gl.js'></script> -->
+
+    <!-- Theme JS -->
+    <script src="{% static 'events/dashboard/js/theme.min.js' %}"></script>
+    {% block extrajs %}
+    {% endblock extrajs %}
+  </body>
+</html>

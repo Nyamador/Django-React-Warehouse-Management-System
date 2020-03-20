@@ -1,0 +1,120 @@
+{% extends "account/base.html" %}
+{% load widget_tweaks %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+
+{% if messages %}
+        {% for message in messages %}
+          <div class="alert alert-light alert-dismissible fade show" role="alert">
+              {{message}}
+          </div>
+        {% endfor %}
+    {% endif %}
+{% block content %}
+
+
+<h1>{% trans "Sign In" %}</h1>
+
+{% get_providers as socialaccount_providers %}
+
+{% if socialaccount_providers %}
+<p>{% blocktrans with site.name as site_name %}Please sign in with one
+of your existing third party accounts. Or, <a href="{{ signup_url }}">sign up</a>
+for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
+
+<div class="socialaccount_ballot">
+
+  <ul class="socialaccount_providers">
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+
+  <div class="login-or">{% trans 'or' %}</div>
+
+</div>
+
+{% include "socialaccount/snippets/login_extra.html" %}
+
+{% else %}
+{% endif %}
+                {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{ error }}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">×</span>
+                    </button>
+                  </div>
+                    {% endfor %}
+                    {% endif %}
+
+              <form class="login" method="POST" action="{% url 'account_login' %}">
+                {% csrf_token %}
+                                                    {% if form.errors %}
+                    {% for field in form %}
+                    {% for error in field.errors %}
+                        <div class="invalid-feedback">
+                            {{ error  }}
+                        </div>
+                    {% endfor %}
+                    {% endfor %}
+
+                  {% endif %}
+                  {% with WIDGET_ERROR_CLASS='is-invalid' %}
+                  <div class="form-group">
+                      <label for="{{ form.login.id_for_label }}">{{ form.login.label }}</label>
+                      {% render_field form.login|add_class:'form-control'|add_error_class:"is-invalid" %}
+                      <div class="invalid-feedback">
+                          {{ form.login.errors }}
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <div class="row">
+                            <div class="col">
+                                <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                            </div>
+                          <div class="col-auto">
+                              <a href="{% url 'account_reset_password' %}" class="form-text small text-muted">
+                                {% trans "Forgot Password?" %}
+                              </a>
+                          </div>
+                      </div>
+
+                      <div class="input-group input-group-merge">
+                        {% render_field form.password|add_class:'form-control form-control-appended'|add_error_class:"is-invalid" %}
+                        <div class="input-group-append">
+                          <span class="input-group-text">
+                            <i class="fe fe-eye"></i>
+                          </span>
+                        </div>
+                      </div>
+
+                  </div>
+
+                  <!-- <div class="form-group">
+                      <label for="{{ form.remember.id_for_label }}">{{ form.remember.label }}</label>
+                      {% render_field form.remember %}
+                  </div> -->
+
+                  <div class="form-group">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" id="customSwitch1" name="remember">
+                    <label class="custom-control-label" for="customSwitch1">{{ form.remember.label }}</label>
+                  </div>
+                  </div>
+
+                  {% endwith %}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button class="primaryAction btn btn-lg btn-block btn-primary mb-3" type="submit">{% trans "Sign In" %}</button>
+                  <div class="text-center">
+                      <small class="text-muted text-center">
+                        {% blocktrans %} Don't have an account yet? <a href="{{ signup_url }}">Sign up {% endblocktrans %}</a>.
+                      </small>
+                  </div>
+              </form>
+{% endblock %}

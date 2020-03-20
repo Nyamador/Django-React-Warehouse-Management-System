@@ -1,0 +1,26 @@
+{% extends 'pages/_base.html' %}
+
+
+{% block content %}
+<div style="margin-top: 21px;" class="mt-8">
+
+          <!-- Heading -->
+          <h1 class="display-4 text-center mb-3">
+            Do you want to delete {{ product }}
+          </h1>
+
+
+          <!-- Form -->
+          <form method="post">
+              {% csrf_token %}
+
+
+            <!-- Submit -->
+            <input class="btn btn-lg btn-block btn-danger mb-3" type="submit" value="Delete">
+            </input>
+
+
+          </form>
+
+        </div>
+{% endblock content %}

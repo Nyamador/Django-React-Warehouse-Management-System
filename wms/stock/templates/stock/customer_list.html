@@ -1,0 +1,60 @@
+{% extends 'pages/_base.html' %}
+
+{% block content %}
+<div class="header mt-md-2">
+    <div class="header-body">
+
+      <!-- Title -->
+      <h1 class="header-title">
+         {{ user.profile.warehouse }} Products
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="header-subtitle">
+         {{ user }}
+      </p>
+
+    </div>
+  </div>
+
+<div class="table-responsive" data-toggle="lists" data-options='{"valueNames": ["tables-row", "tables-first", "tables-last", "tables-handle"]}'>
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">
+            <a href="#" class="text-muted sort" data-sort="tables-row">#</a>
+          </th>
+          <th scope="col">
+            <a href="#" class="text-muted sort" data-sort="tables-first">Firstname</a>
+          </th>
+          <th scope="col">
+            <a href="#" class="text-muted sort" data-sort="tables-last">Lastname</a>
+          </th>
+          <th scope="col">
+            <a href="#" class="text-muted sort" data-sort="tables-handle">Email</a>
+          </th>
+          <th scope="col">
+            <a href="#" class="text-muted" >Delete</a>
+          </th>
+          <th scope="col">
+            <a href="#" class="text-muted" >Edit</a>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="list">
+        {% for customer in customers %}
+        <tr>
+          <th scope="row" class="tables-row">{{ customer.id }}</th>
+          <td class="tables-first">{{ customer.firstname }}</td>
+          <td class="tables-last">{{ customer.lastname }}</td>
+          <td class="tables-handle">{{ customer.email }}</td>
+          <td class="tables-handle text-center"><a href="{%  url 'delete-customer' customer.id %}"><i class="fe fe-trash"></i></a></td>
+          <td class="tables-handle text-center"><a href="{%  url 'edit-customer' customer.id %}"><i class="fe fe-edit-2"></i></a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+
+{% endblock content %}

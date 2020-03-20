@@ -1,0 +1,65 @@
+{% extends 'pages/_base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+
+<div class="header mt-md-5">
+    <div class="header-body">
+      <div class="row align-items-center">
+        <div class="col">
+
+
+          <!-- Title -->
+          <h1 class="header-title">
+                  <i class="fe fe-tag"></i>
+            Edit {{object.name}}
+          </h1>
+
+        </div>
+      </div> <!-- / .row -->
+    </div>
+  </div>
+
+
+  <form class="organizer-form" method="post">
+    {% csrf_token %}
+    {% with WIDGET_ERROR_CLASS='is-invalid' WIDGET_REQUIRED_CLASS="required" %}
+
+    <div class="form-group">
+        <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+            {% render_field form.name|add_class:'form-control'|add_error_class:"is-invalid" %}
+                <div class="invalid-feedback">
+                    {{ form.name.errors }}
+                </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.quantity.id_for_label }}">{{ form.quantity.label }}</label>
+            {% render_field form.quantity|add_class:'form-control'|add_error_class:"is-invalid" %}
+                <div class="invalid-feedback">
+                    {{ form.quantity.errors }}
+                </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.price.id_for_label }}">{{ form.price.label }}</label>
+            {% render_field form.price|add_class:'form-control'|add_error_class:"is-invalid" %}
+                <div class="invalid-feedback">
+                    {{ form.price.errors }}
+                </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.sku.id_for_label }}">{{ form.sku.label }}</label>
+            {% render_field form.sku|add_class:'form-control'|add_error_class:"is-invalid" %}
+                <div class="invalid-feedback">
+                    {{ form.sku.errors }}
+                </div>
+    </div>
+
+    <input type="submit" class="primaryAction btn btn-lg btn-block btn-primary mb-3" value="Save">
+
+    {% endwith %}
+    </form>
+{% endblock content %}

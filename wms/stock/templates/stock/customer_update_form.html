@@ -1,0 +1,58 @@
+{% extends 'pages/_base.html' %}
+{% load widget_tweaks %}
+
+{% block content %}
+
+
+<div class="header mt-md-5">
+    <div class="header-body">
+      <div class="row align-items-center">
+        <div class="col">
+
+
+          <!-- Title -->
+          <h1 class="header-title">
+                  <i class="fe fe-tag"></i>
+            Edit {{object.name}}
+          </h1>
+
+        </div>
+      </div> <!-- / .row -->
+    </div>
+  </div>
+
+
+  <form class="organizer-form" method="post">
+    {% csrf_token %}
+    {% with WIDGET_ERROR_CLASS='is-invalid' WIDGET_REQUIRED_CLASS="required" %}
+
+    <div class="form-group">
+        <label for="{{ form.firstname.id_for_label }}">{{ form.firstname.label }}</label>
+            {% render_field form.firstname|add_class:'form-control'|add_error_class:"is-invalid" %}
+                <div class="invalid-feedback">
+                    {{ form.firstname.errors }}
+                </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.lastname.id_for_label }}">{{ form.lastname.label }}</label>
+            {% render_field form.lastname|add_class:'form-control'|add_error_class:"is-invalid" %}
+                <div class="invalid-feedback">
+                    {{ form.lastname.errors }}
+                </div>
+    </div>
+
+    <div class="form-group">
+        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+            {% render_field form.email|add_class:'form-control'|add_error_class:"is-invalid" %}
+                <div class="invalid-feedback">
+                    {{ form.email.errors }}
+                </div>
+    </div>
+
+
+    <input type="submit" class="primaryAction btn btn-lg btn-block btn-primary mb-3" value="Save">
+
+    {% endwith %}
+    </form>
+{% endblock content %}
