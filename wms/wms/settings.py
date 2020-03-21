@@ -25,7 +25,7 @@ SECRET_KEY = '%@(mp@w9bs7e7=!n)x88nk)$cc^!m62)ca()6+5r6-f9y$ax6n'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'widget_tweaks',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

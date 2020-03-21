@@ -5,8 +5,12 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from rest_framework import generics
+
+
 from .forms import ProductCreationForm, CustomerCreationForm, ShipmentCreationForm
 from .models import Product, Customer, Shipment
+from .serializers import ProductSerializer
 
 @login_required()
 def ProductCreationView(request, uuid):
@@ -113,3 +117,8 @@ class ShipmentUpdateView(SuccessMessageMixin, UpdateView):
     success_url = '/'
     success_message = "%(name)s was edited successfully"
 
+
+
+class Products(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer

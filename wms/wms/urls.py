@@ -25,4 +25,6 @@ urlpatterns = [
     path('stock/', include('stock.urls')),
     path('customers/new', stock_views.CustomerCreationView.as_view(), name='add-customer'),
     path('', include('pages.urls')),
+    path('api-auth/', include('rest_framework.urls')),
+    path('api/v1/products', stock_views.Products.as_view(), name="api"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
