@@ -48,9 +48,11 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'widget_tweaks',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -174,3 +176,10 @@ if DEBUG:
 LOGIN_REDIRECT_URL = 'home'
 
 LOGOUT_REDIRECT_URL = 'home'
+
+
+
+#CORS HEADERS
+CORS_ORIGIN_WHITELIST = (
+         'localhost:3000/'
+)
