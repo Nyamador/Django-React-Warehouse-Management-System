@@ -48,11 +48,12 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'widget_tweaks',
     'rest_framework',
-    'corsheaders',
+    'rest_framework.authtoken',
+    # 'corsheaders',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', 
+    # 'corsheaders.middleware.CorsMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -180,6 +181,17 @@ LOGOUT_REDIRECT_URL = 'home'
 
 
 #CORS HEADERS
-CORS_ORIGIN_WHITELIST = (
-         'localhost:3000/'
-)
+# CORS_ORIGIN_WHITELIST = ()
+
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django_redis.cache.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379/1",
+#         "OPTIONS": {
+#             "CLIENT_CLASS": "django_redis.client.DefaultClient"
+#         },
+#         "KEY_PREFIX": "example"
+#     }
+# }
+
+# CACHE_TTL = 60 * 15

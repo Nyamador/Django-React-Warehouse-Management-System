@@ -8,6 +8,7 @@ urlpatterns = [
     path('customers/<int:id>/edit', views.CustomerUpdateView.as_view(), name="edit-customer"),
     # Products
     path('<uuid:uuid>/products', views.ProductListView.as_view(), name="all-products"),
+    path('products/all', views.CachedProductListView, name='cached'),
     path('<uuid:uuid>/products/new', views.ProductCreationView, name="add-product"),
     path('products/<int:id>/delete', views.ProductDeleteView.as_view(), name="delete-product"),
     path('products/<int:id>/edit', views.ProductUpdateView.as_view(), name="edit-product"),

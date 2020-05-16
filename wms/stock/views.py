@@ -1,3 +1,5 @@
+from django.conf import settings
+# from django.core.cache.backends.base import DEFAULT_TIMEOUT
 from django.shortcuts import render,reverse,redirect
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.views.generic import  ListView
@@ -5,12 +7,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
-from rest_framework import generics
-
+from django.views.decorators.cache import cache_page
 
 from .forms import ProductCreationForm, CustomerCreationForm, ShipmentCreationForm
 from .models import Product, Customer, Shipment
-from .serializers import ProductSerializer
+
+
+# CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
 
 @login_required()
 def ProductCreationView(request, uuid):
@@ -49,6 +52,13 @@ class ShipmentCreationView(SuccessMessageMixin, LoginRequiredMixin, CreateView):
 
 
 # List Views
+# @cache_page(CACHE_TTL)
+def CachedProductListView(request):
+    products = Product.objects.all()
+    context = {
+        'products': products
+    }
+    return render(request, 'stock/product_list.html', context)
 
 class ProductListView(ListView, LoginRequiredMixin):
     template_name = "stock/ProductListView"
@@ -116,9 +126,3 @@ class ShipmentUpdateView(SuccessMessageMixin, UpdateView):
     fields = ['customer', 'destination', 'product', 'quantity']
     success_url = '/'
     success_message = "%(name)s was edited successfully"
-
-
-
-class Products(generics.ListCreateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
