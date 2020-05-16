@@ -13,6 +13,6 @@
 9.  Run the project `python manage.py runserver`
 
 
-**Backend - Django**
+**Frontend - Reaact**
 1. cd  `wms-frontend`
 2. If you prefer using `npm` -> Run `npm i` or `yarn add` for Yarn
