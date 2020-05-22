@@ -49,11 +49,11 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'rest_framework',
     'rest_framework.authtoken',
-    # 'corsheaders',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
-    # 'corsheaders.middleware.CorsMiddleware', 
+    'corsheaders.middleware.CorsMiddleware', 
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -195,3 +195,10 @@ LOGOUT_REDIRECT_URL = 'home'
 # }
 
 # CACHE_TTL = 60 * 15
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+# CORS_ORIGIN_ALLOW_ALL = False
+# CORS_ORIGIN_WHITELIST = (
+#        'http://localhost:4200',
+# )
