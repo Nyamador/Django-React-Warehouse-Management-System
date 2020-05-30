@@ -18,6 +18,8 @@ const Header = () => {
             <div className="dropdown">
         
               <div className="avatar-img rounded-circle">
+                <Link to="/login">
+                </Link>
                 <i className="fe fe-user">
 
                 </i>

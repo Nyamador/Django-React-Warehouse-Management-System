@@ -1,41 +1,35 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './App.css';
 import HomePage from './Pages/Homepage';
+import ProductsPage from './Pages/ProductsPage';
+import ShipmentsPage from './Pages/ShipmentsPage';
+import LoginPage from './Pages/LoginPage';
 import Customers from './Pages/Customers';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
-  const [products, setProducts] = useState([]);
-
-  const handleClick = () => {
-    fetch('http://127.0.0.1:8000/api/v1/products/all')
-      .then((response) => response.json())
-      .then((data) => setProducts([...data]));
-  };
-
   return (
-    // <>
-    //   <div>
-    //     <button onClick={handleClick}>Fetch Products</button>
-
-    //     {products.map((product) => (
-    //       <p key={Math.random()}>{product.name}</p>
-    //     ))}
-    //   </div>
-    // </>
-
     <Router>
       <Switch>
         <Route exact path='/'>
-          <HomePage/>
+          <HomePage />
         </Route>
 
-        <Route path='/customers'>
-          <Customers/>
+        <Route path='/customers' component={Customers}/>
+
+        <Route path='/products'>
+              <ProductsPage/>
         </Route>
+
+        <Route path='/shipments'>
+          <ShipmentsPage/>
+        </Route>
+
+        <Route path='/login'>
+          <LoginPage/>
+        </Route>        
 
       </Switch>
-
     </Router>
   );
 }

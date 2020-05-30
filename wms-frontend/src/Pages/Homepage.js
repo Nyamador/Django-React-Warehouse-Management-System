@@ -101,10 +101,9 @@ const Homepage = () => {
 
                 <div className='card-header'>
                   <h4 className='card-header-title'>
-                    <a href="{% url 'all-shipment' user.profile.warehouse.id %}">
-                      <i className='fe fe-list'></i> &nbsp;&nbsp;&nbsp; All
-                      Shipments
-                    </a>
+                  <Link to="/shipments">
+                    <i className='fe fe-list'></i> &nbsp;&nbsp;&nbsp; All Shipments
+                    </Link>
                   </h4>
                 </div>
               </div>
@@ -129,10 +128,9 @@ const Homepage = () => {
 
                 <div className='card-header'>
                   <h4 className='card-header-title'>
-                    <a href="{% url 'all-products' user.profile.warehouse.id %}">
-                      <i className='fe fe-list'></i> &nbsp;&nbsp;&nbsp; All
-                      Products
-                    </a>
+                    <Link to="/products">
+                    <i className='fe fe-list'></i> &nbsp;&nbsp;&nbsp; All Products
+                    </Link>
                   </h4>
                 </div>
               </div>

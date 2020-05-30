@@ -14,74 +14,32 @@ const Table = ({data, editable, list}) => {
             <table className='table'>
               <thead>
                 <tr>
-                  <th scope='col'>
-                    <p className='text-muted sort' data-sort='tables-row'>
-                      #
-                    </p>
-                  </th>
-                  <th scope='col'>
-                    <p className='text-muted sort' data-sort='tables-name'>
-                      Name
-                    </p>
-                  </th>
-                  <th scope='col'>
-                    <p className='text-muted sort' data-sort='tables-quantity'>
-                      Quantity
-                    </p>
-                  </th>
-                  <th scope='col'>
-                    <p className='text-muted sort' data-sort='tables-sku'>
-                      SKU
-                    </p>
-                  </th>
-                  <th scope='col'>
-                    <p className='text-muted'>Delete</p>
-                  </th>
-                  <th scope='col'>
-                    <p className='text-muted'>Edit</p>
-                  </th>
+                { data.map( item =>
+                      (
+                        <th scope='col' key={Math.random()}>
+                        <p className='text-muted sort' data-sort='tables-row'>
+                        {item}
+                        </p>
+                      </th>
+                      )
+                )
+                }
                 </tr>
               </thead>
               <tbody className='list'>
-                <tr>
-                  <th scope='row' className='tables-row'>
-                    {' '}
-                    product.id{' '}
-                  </th>
-                  { data.map( item =>  <td className='tables-first' key={Math.random()}> {item} </td>)}
-                  { editable ?
-                  <>
-                  <td className='tables-handle text-center'>
-                    <p>
-                      <i className='fe fe-trash'></i>
-                    </p>
-                  </td>
-                  <td className='tables-handle text-center'>
-                    <p>
-                      <i className='fe fe-edit-2'></i>
-                    </p>
-                  </td>
-                  </>
-                  :
-                  <>
-                  <td className='tables-first'>No Permission</td>
-                  <td className='tables-first'>No Permission</td>
-                  </>
-                }
-                                </tr>
 
                 {
                     list.map(
                         datapoint => 
                         <tr key={Math.random()}>
-                            <td className="tables-handle text-center">
-                            {datapoint.firstname}
+                            <td className="tables-handle">
+                            {datapoint.firstname || datapoint.name || datapoint.destination}
                             </td>
-                            <td className="tables-handle text-center">
-                            {datapoint.lastname}
+                            <td className="tables-handle">
+                            {datapoint.lastname || datapoint.quantity }
                             </td>
-                            <td className="tables-handle text-center">
-                            {datapoint.email}
+                            <td className="tables-handle">
+                            {datapoint.email || datapoint.sku || datapoint.product}
                             </td>
                         </tr>
                     )
