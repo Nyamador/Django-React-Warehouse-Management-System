@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import axiosInstance from '../axiosApi';
+
+
+const AuthenticatedContext = React.createContext(false);
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [credentials, setCredentials] = useState({});
+  const [token, setToken] = useState('');
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -16,15 +18,29 @@ const LoginPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    setCredentials({ email, password });
+
+    var myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    var raw = JSON.stringify({"username":`${email}`,"password":`${password}`});
+
+    var requestOptions = {
+        method: 'POST',
+        headers: myHeaders,
+        body: raw
+    };
+
     try {
-      const response = axiosInstance.post('/token', {
-        email, password
-      });
-      axiosInstance.defaults.headers['Authorization'] = 'JWT' + response.data.access;
-      console.log(response)
-      localStorage.setItem('access_token', response.data.access);
-      localStorage.setItem('refresh_token', response.data.refresh);
+      const response = fetch("http://localhost:8000/api-token-auth/", requestOptions)
+     .then(response => response.json())
+     .then(result => {
+       const token = JSON.stringify(result.token)
+       localStorage.setItem('access_token', token);
+       setToken(result.token)
+      })
+     .catch(error => console.log('error', error));
+      // axiosInstance.defaults.headers['Authorization'] = 'Token ' + response.data.access;
+      // console.log(response)
       return response.data;
     }catch(error){
       throw error;
@@ -105,5 +121,7 @@ const LoginPage = () => {
     </div>
   );
 };
+
+export {AuthenticatedContext}
 
 export default LoginPage;

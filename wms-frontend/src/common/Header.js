@@ -19,10 +19,8 @@ const Header = () => {
         
               <div className="avatar-img rounded-circle">
                 <Link to="/login">
+                <i className="fe fe-user">                      </i>          
                 </Link>
-                <i className="fe fe-user">
-
-                </i>
               </div>
 
             </div>

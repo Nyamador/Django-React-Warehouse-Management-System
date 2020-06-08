@@ -1,10 +1,15 @@
 from rest_framework import generics
+from rest_framework.authentication import TokenAuthentication
+from rest_framework.permissions import IsAuthenticated
 from stock.models import Product, Customer, Warehouse, Shipment
 from stock.serializers import ProductSerializer, CustomerSerializer, WarehouseSerializer, ShipmentSerializer
 
 
 #LIST API VIEWS
 class Products(generics.ListAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
