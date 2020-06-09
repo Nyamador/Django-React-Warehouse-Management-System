@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-
-
-const AuthenticatedContext = React.createContext(false);
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [token, setToken] = useState('');
+  
+  useEffect(() => {
+    setToken(localStorage.getItem('access_token'))
+  }, [token])
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -20,34 +22,39 @@ const LoginPage = () => {
     event.preventDefault();
 
     var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    myHeaders.append('Content-Type', 'application/json');
 
-    var raw = JSON.stringify({"username":`${email}`,"password":`${password}`});
+    var raw = JSON.stringify({ username: `${email}`, password: `${password}` });
 
     var requestOptions = {
-        method: 'POST',
-        headers: myHeaders,
-        body: raw
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
     };
 
     try {
-      const response = fetch("http://localhost:8000/api-token-auth/", requestOptions)
-     .then(response => response.json())
-     .then(result => {
-       const token = JSON.stringify(result.token)
-       localStorage.setItem('access_token', token);
-       setToken(result.token)
-      })
-     .catch(error => console.log('error', error));
-      // axiosInstance.defaults.headers['Authorization'] = 'Token ' + response.data.access;
+      const response = fetch(
+        'http://localhost:8000/api-token-auth/',
+        requestOptions
+      )
+        .then((response) => response.json())
+        .then((result) => {
+          const token = JSON.stringify(result.token);
+          localStorage.setItem('access_token', token);
+          setToken(result.token);
+        })
+        .catch((error) => console.log('error', error));
+      // axiosInstance.defaults.headers["Authorization"] = "Token " + response.data.access;
       // console.log(response)
       return response.data;
-    }catch(error){
+    } catch (error) {
       throw error;
     }
   };
 
-  return (
+  return token ? (
+    <Redirect to='/' />
+  ) : (
     <div className='container'>
       <div className='row justify-content-center'>
         <div className='col-12 col-md-5 col-xl-4 my-5'>
@@ -111,7 +118,7 @@ const LoginPage = () => {
             </button>
             <div className='text-center'>
               <small className='text-muted text-center'>
-                Don't have an account yet?{' '}
+                Don"t have an account yet?{' '}
                 <a href='/accounts/signup/?next=%2F'>Sign up </a>.
               </small>
             </div>
@@ -121,7 +128,5 @@ const LoginPage = () => {
     </div>
   );
 };
-
-export {AuthenticatedContext}
 
 export default LoginPage;

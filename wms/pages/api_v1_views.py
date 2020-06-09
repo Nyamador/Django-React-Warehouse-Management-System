@@ -15,6 +15,9 @@ class Products(generics.ListAPIView):
 
 
 class Customers(generics.ListAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
+    
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer
 

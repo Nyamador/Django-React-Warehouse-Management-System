@@ -1,10 +1,12 @@
 {% extends 'pages/_base.html' %}
+{% load cache %}
 
 
 {% block content %}
 
 
 {% if user.profile.is_approved %}
+{% cache 500 username %}
 <div class="header mt-md-2">
     <div class="header-body">
 
@@ -20,7 +22,7 @@
 
     </div>
   </div>
-
+{% endcache %}
 <div class="row">
 
     <div class="col-12 col-lg-6 col-xl">

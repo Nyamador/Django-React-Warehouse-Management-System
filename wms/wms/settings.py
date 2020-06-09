@@ -184,25 +184,25 @@ LOGOUT_REDIRECT_URL = 'home'
 #CORS HEADERS
 # CORS_ORIGIN_WHITELIST = ()
 
-# CACHES = {
-#     "default": {
-#         "BACKEND": "django_redis.cache.RedisCache",
-#         "LOCATION": "redis://127.0.0.1:6379/1",
-#         "OPTIONS": {
-#             "CLIENT_CLASS": "django_redis.client.DefaultClient"
-#         },
-#         "KEY_PREFIX": "example"
-#     }
-# }
+CACHES = {
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient"
+        },
+        "KEY_PREFIX": "wms"
+    }
+}
 
-# CACHE_TTL = 60 * 15
+CACHE_TTL = 60 * 15
 
 CORS_ORIGIN_ALLOW_ALL = True
 
 # CORS_ORIGIN_ALLOW_ALL = False
-# CORS_ORIGIN_WHITELIST = (
-#        'http://localhost:4200',
-# )
+CORS_ORIGIN_WHITELIST = (
+       'http://127.0.0.1:3000',
+)
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES'  : (
