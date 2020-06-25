@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [token, setToken] = useState('');
-  
-  useEffect(() => {
-    setToken(localStorage.getItem('access_token'))
-  }, [token])
+
+  useEffect(() => {}, []);
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -20,41 +16,9 @@ const LoginPage = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    var myHeaders = new Headers();
-    myHeaders.append('Content-Type', 'application/json');
-
-    var raw = JSON.stringify({ username: `${email}`, password: `${password}` });
-
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-    };
-
-    try {
-      const response = fetch(
-        'http://localhost:8000/api-token-auth/',
-        requestOptions
-      )
-        .then((response) => response.json())
-        .then((result) => {
-          const token = JSON.stringify(result.token);
-          localStorage.setItem('access_token', token);
-          setToken(result.token);
-        })
-        .catch((error) => console.log('error', error));
-      // axiosInstance.defaults.headers["Authorization"] = "Token " + response.data.access;
-      // console.log(response)
-      return response.data;
-    } catch (error) {
-      throw error;
-    }
   };
 
-  return token ? (
-    <Redirect to='/' />
-  ) : (
+  return (
     <div className='container'>
       <div className='row justify-content-center'>
         <div className='col-12 col-md-5 col-xl-4 my-5'>
@@ -67,7 +31,6 @@ const LoginPage = () => {
                 type='email'
                 name='login'
                 placeholder='E-mail address'
-                autofocus='autofocus'
                 className='form-control'
                 required=''
                 value={email}

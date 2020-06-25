@@ -30,7 +30,7 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('api-auth/', include('rest_framework.urls')),
     path('api/v1/', include('pages.api_v1_urls')),
-    path('api-token-auth/', TokenViews.obtain_auth_token),
+    # path('api-token-auth/', TokenViews.obtain_auth_token),
 
     # JWT Authentication Views
     path('api/token', TokenObtainPairView.as_view(), name='token_obtain_pair'),

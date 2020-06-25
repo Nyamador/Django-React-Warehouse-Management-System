@@ -7,16 +7,12 @@ from stock.serializers import ProductSerializer, CustomerSerializer, WarehouseSe
 
 #LIST API VIEWS
 class Products(generics.ListAPIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
 
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
 
 class Customers(generics.ListAPIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
     
     queryset = Customer.objects.all()
     serializer_class = CustomerSerializer

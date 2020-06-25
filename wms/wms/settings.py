@@ -49,7 +49,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'widget_tweaks',
     'rest_framework',
-    'rest_framework.authtoken',
+    # 'rest_framework.authtoken',
     'corsheaders',
 ]
 
