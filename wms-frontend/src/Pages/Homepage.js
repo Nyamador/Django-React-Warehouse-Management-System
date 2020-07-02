@@ -146,10 +146,10 @@ const Homepage = () => {
 
                 <div className='card-header'>
                   <h4 className='card-header-title'>
-                    <a href="{% url 'add-customer' %}">
+                    <Link to="/customers/new">
                       <i className='fe fe-plus-circle'></i> &nbsp;&nbsp;&nbsp;
                       Add New
-                    </a>
+                    </Link>
                   </h4>
                 </div>
 
