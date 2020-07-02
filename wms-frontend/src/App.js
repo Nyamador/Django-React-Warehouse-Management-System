@@ -5,7 +5,7 @@ import ProductsPage from './Pages/ProductsPage';
 import ShipmentsPage from './Pages/ShipmentsPage';
 import LoginPage from './Pages/LoginPage';
 import Customers from './Pages/Customers';
-import CreateShipmentPage from './Pages/CreateShipmentPage'
+import CreateShipmentPage from './Pages/CreateShipmentPage';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -22,13 +22,14 @@ function App() {
               <ProductsPage/>
         </Route>
 
+        <Route path='/shipments/new'> 
+          <CreateShipmentPage/>
+        </Route>
+        
         <Route path='/shipments'>
           <ShipmentsPage/>
         </Route>
 
-        <Route path='/shipments/new'>
-          <CreateShipmentPage/>
-        </Route>
 
         <Route path='/login'>
           <LoginPage/>

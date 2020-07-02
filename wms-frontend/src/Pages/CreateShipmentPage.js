@@ -6,7 +6,9 @@ const CreateShipmentPage = () => {
     return (
         <>
         <Header/>
-        <div>Hello</div>
+
+
+
         </>
 
     );
