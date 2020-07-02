@@ -1,5 +1,5 @@
 import React from 'react';
-import Header from '../components/Header';
+import Header from '../common/Header';
 
 
 
@@ -12,22 +12,22 @@ const CreateProductPage = () => {
         <div className="row justify-content-center">
             <div className="col-12 col-lg-10 col-xl-8">
                 
-<div className="header mt-md-5">
-    <div className="header-body">
-      <div className="row align-items-center">
-        <div className="col">
+        <div className="header mt-md-5">
+            <div className="header-body">
+            <div className="row align-items-center">
+                <div className="col">
 
 
-          
-          <h1 className="header-title">
-                  <i className="fe fe-tag"></i>
-            Add a product
-          </h1>
+                
+                <h1 className="header-title">
+                        <i className="fe fe-tag"></i>
+                    Add a product
+                </h1>
 
+                </div>
+            </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </div>
 
 
   <form className="organizer-form" method="post">
