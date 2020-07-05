@@ -22,6 +22,7 @@ class Product(models.Model):
     sku = models.CharField(verbose_name="Stock Keeping Unit", max_length=50, null=False, blank=False, unique=True)
     date = models.DateField(verbose_name="Date Created", auto_now_add=True)
 
+
     def __str__(self):
         return self.name
 

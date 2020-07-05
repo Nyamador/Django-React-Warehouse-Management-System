@@ -12,6 +12,11 @@ class Products(generics.ListAPIView):
     serializer_class = ProductSerializer
 
 
+class ProductCreateAPIView(generics.CreateAPIView):
+
+    serializer_class = ProductSerializer
+
+
 class Customers(generics.ListAPIView):
     
     queryset = Customer.objects.all()
