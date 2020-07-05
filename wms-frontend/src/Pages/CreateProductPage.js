@@ -1,5 +1,6 @@
 import React, {useState}from 'react';
 import Header from '../common/Header';
+import InputElement from '../common/InputElement';
 
 
 
@@ -38,7 +39,7 @@ const CreateProductPage = () => {
     
     <div className="form-group">
         <label for="id_name">Product Name</label>
-            <input type="text" name="name" maxlength="300" onChange={e => setName(e.target.value)} className="required form-control" required="" id="id_name"/>
+        <InputElement name="name" id="id_name" required={true}/>
                 <div className="invalid-feedback">
                     
                 </div>
