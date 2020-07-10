@@ -1,12 +1,10 @@
-import React, {useState}from 'react';
+import React from 'react';
 import Header from '../common/Header';
 import InputElement from '../common/InputElement';
 
 
 
 const CreateProductPage = () => {
-    const [name, setName] = useState('');
-    const [number, setNumber] = useState();
 
     return (
         <React.Fragment>
@@ -39,7 +37,7 @@ const CreateProductPage = () => {
     
     <div className="form-group">
         <label for="id_name">Product Name</label>
-        <InputElement name="name" id="id_name" required={true}/>
+        <InputElement type="text" name="name" id="id_name"/>
                 <div className="invalid-feedback">
                     
                 </div>
@@ -47,7 +45,7 @@ const CreateProductPage = () => {
 
     <div className="form-group">
         <label for="id_quantity">Product Quantity</label>
-            <input type="number" name="quantity" min="0" onChange={e => setNumber(e.target.value)} className="required form-control" required="" id="id_quantity"/>
+        <InputElement type="number" name="quantity" id="id_quantity"/>
                 <div className="invalid-feedback">
                     
                 </div>

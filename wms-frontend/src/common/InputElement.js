@@ -6,7 +6,7 @@ const InputElement = (props) => {
     const [value, setValue] = useState();
 
     return (
-        <input type="text" value={value} className="required form-control" 
+        <input type={props.type || "text"} value={value} className="required form-control" 
         required={props.required || true } name={props.name} id={props.id} onChange={ e => setValue(e.target.value)}/>
     )
 }
