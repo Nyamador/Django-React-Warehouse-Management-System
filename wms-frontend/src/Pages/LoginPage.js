@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axiosInstance from '../axiosInstance';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const obtainTokenUrl = 'http://localhost:8000/api/token'
 
   useEffect(() => {
    
@@ -18,14 +17,19 @@ const LoginPage = () => {
     setPassword(event.target.value);
   };
 
-  const handleSubmit = (event) => {
-     axios.post(obtainTokenUrl, {"email": `${email}`, "password": `${password}`})
-    .then(response => {
-      localStorage.setItem('x-refresh', response.data.refresh);
-      localStorage.setItem('x-refresh', response.data.access);
-      console.log(response)
-    });
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    try{
+      const response = await axiosInstance.post('/api/token',{
+        email: email,
+        password: password
+      });
+      axiosInstance.defaults.headers['Authorization'] = "JWT" + response.data.access;
+      localStorage.setItem('access_token', response.data.access);
+      localStorage.setItem('refresh_token', response.data.refresh);
+    }catch(error){
+      throw error;
+    }
   };
 
   return (
