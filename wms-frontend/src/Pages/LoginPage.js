@@ -1,10 +1,14 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const obtainTokenUrl = 'http://localhost:8000/api/token'
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+   
+  });
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
@@ -15,6 +19,12 @@ const LoginPage = () => {
   };
 
   const handleSubmit = (event) => {
+     axios.post(obtainTokenUrl, {"email": `${email}`, "password": `${password}`})
+    .then(response => {
+      localStorage.setItem('x-refresh', response.data.refresh);
+      localStorage.setItem('x-refresh', response.data.access);
+      console.log(response)
+    });
     event.preventDefault();
   };
 
@@ -26,7 +36,7 @@ const LoginPage = () => {
 
           <form className='login' onSubmit={handleSubmit}>
             <div className='form-group'>
-              <label for='id_login'>E-mail</label>
+              <label htmlFor='id_login'>E-mail</label>
               <input
                 type='email'
                 name='login'
@@ -42,7 +52,7 @@ const LoginPage = () => {
             <div className='form-group'>
               <div className='row'>
                 <div className='col'>
-                  <label for='id_password'>Password</label>
+                  <label htmlFor='id_password'>Password</label>
                 </div>
                 <div className='col-auto'>
                   <a
