@@ -5,6 +5,7 @@ import axiosInstance from '../axiosInstance';
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoggedIn, setisLoggedIn] = useState(false)
 
   useEffect(() => {
    
@@ -28,13 +29,14 @@ const LoginPage = () => {
       axiosInstance.defaults.headers['Authorization'] = "JWT" + response.data.access;
       localStorage.setItem('access_token', response.data.access);
       localStorage.setItem('refresh_token', response.data.refresh);
-      return <Redirect to="/"/>;
+      setisLoggedIn(true);
     }catch(error){
+      setisLoggedIn(false);
       throw error;
     }
   };
 
-  return (
+  return isLoggedIn ? <Redirect to="/"/> : (
     <div className='container'>
       <div className='row justify-content-center'>
         <div className='col-12 col-md-5 col-xl-4 my-5'>
