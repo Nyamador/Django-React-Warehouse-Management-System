@@ -16,6 +16,9 @@ def index(request):
     customer_count = Customer.objects.count()
     total_stock_price = Product.objects.all().aggregate(Sum('price'))
 
+    print("Desmond", request.META['Desmond'])
+    print("Seller", request.META['seller_subdomain'])
+
     context = {
         'product_count' :product_count,
         "customer_count" : customer_count,
